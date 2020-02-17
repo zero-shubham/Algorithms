@@ -14,12 +14,17 @@ def fix_multi_digits(infix_expr):
 
 
 def check_priority_of_val(val, stack_val):
-    pri_list = ["(", ")", "*", "/", "+", "-"]
-    idx = pri_list.index(val)
-    if stack_val in pri_list[0: idx]:
-        return "lower"
-    else:
+    priority_dict = {
+        "*": ["(", ")"],
+        "/": ["(", ")"],
+        "+": ["(", ")", "*", "/"],
+        "-": ["(", ")", "*", "/"]
+    }
+
+    if stack_val in priority_dict[val]:
         return "higher"
+    else:
+        return "lower"
 
 
 def add_to_stack(val, stack, postfix):
@@ -32,15 +37,17 @@ def add_to_stack(val, stack, postfix):
                 stack.pop()
                 break
         return
-    for v in stack:
-        priority = check_priority_of_val(val, v)
-        # if val to be added has lower priority compared to
-        # last value of the stack, pop the last val
-        if priority == "lower":
-            popped = stack.pop()
-            postfix.append(popped)
-        else:
-            break
+    if val != "(":
+        for idx in range(len(stack)-1, -1, -1):
+            priority = check_priority_of_val(val, stack[idx])
+            print("priority of ", val, " to ", stack[idx], " is ", priority)
+            # if val to be added has lower priority compared to
+            # last value of the stack, pop the last val
+            if priority == "lower" and stack[idx] != "(":
+                popped = stack.pop()
+                postfix.append(popped)
+            else:
+                break
     stack.append(val)
 
 
@@ -48,7 +55,6 @@ def to_postfix(infix_expr):
     infix_expr = fix_multi_digits(infix_expr)
     stack = []
     postfix = []
-
     for val in infix_expr:
         if not is_operator(val):
             postfix.append(val)
