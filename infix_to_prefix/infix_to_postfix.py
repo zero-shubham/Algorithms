@@ -13,18 +13,19 @@ def fix_multi_digits(infix_expr):
     return infix_expr
 
 
-def check_priority_of_val(val, stack_val):
+def check_allowance_of_val(val, stack_val):
     priority_dict = {
         "*": ["(", ")"],
         "/": ["(", ")"],
         "+": ["(", ")", "*", "/"],
-        "-": ["(", ")", "*", "/"]
+        "-": ["(", ")", "*", "/"],
+        "(": ["*", "/", "+", "-"]
     }
 
-    if stack_val in priority_dict[val]:
-        return "higher"
+    if val in priority_dict[stack_val]:
+        return True
     else:
-        return "lower"
+        return False
 
 
 def add_to_stack(val, stack, postfix):
@@ -39,11 +40,9 @@ def add_to_stack(val, stack, postfix):
         return
     if val != "(":
         for idx in range(len(stack)-1, -1, -1):
-            priority = check_priority_of_val(val, stack[idx])
-            print("priority of ", val, " to ", stack[idx], " is ", priority)
             # if val to be added has lower priority compared to
             # last value of the stack, pop the last val
-            if priority == "lower" and stack[idx] != "(":
+            if not check_allowance_of_val(val, stack[idx]):
                 popped = stack.pop()
                 postfix.append(popped)
             else:
