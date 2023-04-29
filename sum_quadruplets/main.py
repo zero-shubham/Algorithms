@@ -1,3 +1,5 @@
+from datetime import datetime
+
 def get_nplets(list_of_numbers, target, placeholder):
     res = []
     for idx, n in enumerate(list_of_numbers):
@@ -9,7 +11,11 @@ def get_nplets(list_of_numbers, target, placeholder):
         if n == 0:
             continue
         factor = target // n
-
+        if factor > placeholder: # * with this we can avoid a lot of unnecessary iterations
+            # * with - completed in  0:00:00.000066
+            # * without -completed in  0:00:00.000099
+            continue
+        
         while factor > 0:
             res_list = [n] * factor
             
@@ -33,9 +39,11 @@ def get_nplets(list_of_numbers, target, placeholder):
 
 
 def quadruplets(list_of_numbers, target):
+    start = datetime.now()
     list_of_numbers.sort()
     list_of_numbers = list(reversed(list_of_numbers))
     resulting_combinaitons = get_nplets(list_of_numbers, target, 4)
+    print("completed in ", datetime.now() - start)
     return [tuple(r) for r in resulting_combinaitons]
 
 
