@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 def get_nplets(list_of_numbers, target, placeholder):
     res = []
     for idx, n in enumerate(list_of_numbers):
@@ -11,14 +12,16 @@ def get_nplets(list_of_numbers, target, placeholder):
         if n == 0:
             continue
         factor = target // n
-        if factor > placeholder: # * with this we can avoid a lot of unnecessary iterations
+        if (
+            factor > placeholder
+        ):  # * with this we can avoid a lot of unnecessary iterations
             # * with - completed in  0:00:00.000066
             # * without -completed in  0:00:00.000099
             continue
-        
+
         while factor > 0:
             res_list = [n] * factor
-            
+
             ret_list = get_nplets(
                 list_of_numbers[idx + 1 :],
                 target - (factor * n),
@@ -29,7 +32,7 @@ def get_nplets(list_of_numbers, target, placeholder):
                     res.append([*res_list, *r])
                 else:
                     res.append([*res_list, r])
-                    
+
             if factor == placeholder and target - (factor * n) == 0:
                 res.append(res_list)
 
@@ -51,3 +54,5 @@ print(quadruplets([0, 5, 2, 3, 4, 1], 11))
 
 
 print(quadruplets([0, 5, 2, 3, 4, 1, 7, 8, 12], 29))
+
+print(quadruplets([i for i in range(0, 100)], 33))
