@@ -8,7 +8,8 @@ Given a number (target) and a list of numbers (list_of_numbers), find all unique
 target = 11
 list_of_numbers = [0, 5, 2, 3, 4, 1]
 
-Output = [(5, 5, 1, 0), (5, 4, 2, 0), (5, 3, 3, 0), (5, 3, 2, 1), (4, 4, 3, 0), (4, 4, 2, 1), (4, 3, 3, 1), (3, 3, 3, 2)]
+Output = [(5, 5, 1, 0), (5, 4, 2, 0), (5, 4, 1, 1), (5, 3, 3, 0), (5, 3, 2, 1), (5, 2, 2, 2), (4, 4, 3, 0), (4, 4, 2, 1), (4, 3, 3, 1), (4, 3, 2, 2), (3, 3, 3, 2)]
+
 ```
 
 ### Notion of solution

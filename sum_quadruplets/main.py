@@ -10,21 +10,24 @@ def get_nplets(list_of_numbers, target, placeholder):
             continue
         factor = target // n
 
-        if factor < placeholder:
-            while factor > 0:
-                res_list = [n] * factor
-                ret_list = get_nplets(
-                    list_of_numbers[idx + 1 :],
-                    target - (factor * n),
-                    placeholder - factor,
-                )
-                for r in ret_list:
-                    if isinstance(r, list):
-                      res.append([*res_list, *r])
-                    else:
-                      res.append([*res_list, r])
+        while factor > 0:
+            res_list = [n] * factor
+            
+            ret_list = get_nplets(
+                list_of_numbers[idx + 1 :],
+                target - (factor * n),
+                placeholder - factor,
+            )
+            for r in ret_list:
+                if isinstance(r, list):
+                    res.append([*res_list, *r])
+                else:
+                    res.append([*res_list, r])
+                    
+            if factor == placeholder and target - (factor * n) == 0:
+                res.append(res_list)
 
-                factor -= 1
+            factor -= 1
 
     return res
 
