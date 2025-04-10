@@ -5,14 +5,14 @@ from collections import deque
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         graph = {i: [] for i in range(numCourses)}
-        cyclDeg = [0] * numCourses
+        depDeg = [0] * numCourses
 
         for a, b in prerequisites:
             graph[b].append(a)
-            cyclDeg[a] += 1
+            depDeg[a] += 1
 
         q = deque()
-        for idx, deg in enumerate(cyclDeg):
+        for idx, deg in enumerate(depDeg):
             # print(idx, deg)
             if deg == 0:
                 q.append(idx)
@@ -22,14 +22,14 @@ class Solution:
 
             for neighbour in graph[v]:
 
-                cyclDeg[neighbour] -= 1
+                depDeg[neighbour] -= 1
 
-                if cyclDeg[neighbour] == 0:
+                if depDeg[neighbour] == 0:
                     q.append(neighbour)
 
             # print(cyclDeg, v)
 
-        return True if sum(cyclDeg) == 0 else False
+        return True if sum(depDeg) == 0 else False
 
 
 def main():
