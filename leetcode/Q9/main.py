@@ -1,6 +1,6 @@
 from typing import List, Set
 
-
+# https://leetcode.com/problems/word-search/submissions/1609617251/
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
 
