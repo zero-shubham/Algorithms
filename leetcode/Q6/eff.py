@@ -34,15 +34,15 @@ class Solution:
 
 def main():
     s = Solution()
-    # print(s.canFinish(2, [[1, 0], [0, 1]]))
+    print(s.canFinish(2, [[1, 0], [0, 1]]))
 
     print(s.canFinish(3, [[2, 1], [1, 0]]))
 
     print(s.canFinish(3, [[1, 0], [2, 0], [0, 2]]))
 
-    # print(s.canFinish(3, [[1, 0], [0, 2], [2, 1]]))
+    print(s.canFinish(3, [[1, 0], [0, 2], [2, 1]]))
 
-    # print(s.canFinish(8, [[1, 0], [2, 6], [1, 7], [6, 4], [7, 0], [0, 5]]))
+    print(s.canFinish(8, [[1, 0], [2, 6], [1, 7], [6, 4], [7, 0], [0, 5]]))
 
 
 if __name__ == "__main__":
