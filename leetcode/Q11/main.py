@@ -1,6 +1,6 @@
 from typing import List
 
-
+# https://leetcode.com/problems/jump-game/submissions/1618496642/
 class Solution:
      def canJump(self, nums: List[int]) -> bool:
         prev = len(nums)-1
