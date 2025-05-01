@@ -2,7 +2,7 @@ from typing import List
 
 # inefficient n^2 time
 
-
+# https://leetcode.com/problems/trapping-rain-water/submissions/1622679474/
 class Solution:
     def trap(self, height: List[int]) -> int:
         i = j = 0
