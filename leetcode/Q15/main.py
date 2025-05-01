@@ -41,6 +41,7 @@ def main():
     print(s.trap([4, 2, 3]))
     print(s.trap([5, 4, 1, 2]))
     print(s.trap([5, 4, 3, 2, 1]))
+    print(s.trap([7, 6, 3, 2, 1]))
 
 
 if __name__ == "__main__":
