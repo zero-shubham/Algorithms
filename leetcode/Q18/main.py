@@ -1,5 +1,6 @@
 from typing import List
 
+# https://leetcode.com/problems/redundant-connection/submissions/1632532614/
 class UnionFind:
     def __init__(self, n: int):
         self.par = dict()
